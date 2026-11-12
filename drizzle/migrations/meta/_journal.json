@@ -8,6 +8,13 @@
       "when": 1794394571832,
       "tag": "0000_sweety_profiles_and_readings",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1794466626907,
+      "tag": "0001_enforce_daily_glucose_limit",
+      "breakpoints": true
     }
   ]
 }
