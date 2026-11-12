@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --radius: 0.45rem;
+    --background: oklch(0.985 0.009 92);
+    --foreground: oklch(0.255 0.022 165);
+    --card: oklch(0.998 0.003 92);
+    --card-foreground: oklch(0.255 0.022 165);
+    --popover: oklch(0.998 0.003 92);
+    --popover-foreground: oklch(0.255 0.022 165);
+    --primary: oklch(0.51 0.10 163);
+    --primary-foreground: oklch(0.985 0.008 92);
+    --secondary: oklch(0.95 0.017 92);
+    --secondary-foreground: oklch(0.31 0.025 165);
+    --muted: oklch(0.956 0.014 92);
+    --muted-foreground: oklch(0.52 0.025 165);
+    --accent: oklch(0.94 0.047 68);
+    --accent-foreground: oklch(0.34 0.055 42);
+    --destructive: oklch(0.56 0.16 25);
+    --destructive-foreground: oklch(0.985 0.008 92);
+    --border: oklch(0.89 0.018 92);
+    --input: oklch(0.89 0.018 92);
+    --ring: oklch(0.61 0.09 163);
+  }
+}
+
+@theme {
+  --font-sans: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--background);
+  color: var(--foreground);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
