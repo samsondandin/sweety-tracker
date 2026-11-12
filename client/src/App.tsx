@@ -227,8 +227,8 @@ export function App() {
   if (!user) {
     return (
       <main className="grid min-h-screen bg-background text-foreground lg:grid-cols-[1.1fr_0.9fr]">
-        <Toaster position="top-right" richColors />
         <section className="flex flex-col justify-between px-6 py-8 sm:px-12 lg:px-16">
+          <Toaster position="top-right" richColors />
           <div className="flex items-center gap-2.5">
             <Droplets className="size-6 text-primary" aria-hidden="true" />
             <span className="font-display text-2xl font-bold tracking-tight">sweety</span>
