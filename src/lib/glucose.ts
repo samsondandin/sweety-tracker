@@ -27,6 +27,7 @@ export function validateReading(
   slot: ReadingSlot,
   existing: GlucoseReading[],
   today: string,
+  excludeReadingId?: string,
 ): string | null {
   if (!rawValue.trim()) return "Please enter a glucose value.";
   if (!/^\d+$/.test(rawValue.trim()) || Number(rawValue) < 40 || Number(rawValue) > 600) {
@@ -34,7 +35,9 @@ export function validateReading(
   }
   if (readingDate > today) return "Date cannot be in the future.";
 
-  const daily = existing.filter((reading) => reading.reading_date === readingDate);
+  const daily = existing.filter(
+    (reading) => reading.reading_date === readingDate && reading.id !== excludeReadingId,
+  );
   if (daily.length >= 4) return "You can add only 4 readings per day.";
 
   if (daily.some((reading) => reading.time_slot === slot)) {
@@ -58,4 +61,26 @@ export function summarizeReadings(readings: GlucoseReading[]): ReportMetrics {
 
 export function getSlotLabel(slot: string): string {
   return READING_SLOTS.find((item) => item.id === slot)?.label ?? slot;
+}
+
+export type ReportPeriod = "daily" | "month_to_date" | "previous_month";
+
+export function getReportDateRange(period: ReportPeriod, selectedDate: string) {
+  const [year, month, day] = selectedDate.split("-").map(Number);
+  if (!year || !month || !day) return null;
+
+  if (period === "daily") return { start: selectedDate, end: selectedDate };
+  if (period === "month_to_date") {
+    return {
+      start: `${year}-${String(month).padStart(2, "0")}-01`,
+      end: selectedDate,
+    };
+  }
+
+  const previousMonthEnd = new Date(Date.UTC(year, month - 1, 0));
+  const previousYear = previousMonthEnd.getUTCFullYear();
+  const previousMonth = previousMonthEnd.getUTCMonth() + 1;
+  const previousMonthStart = `${previousYear}-${String(previousMonth).padStart(2, "0")}-01`;
+  const previousMonthEndDate = `${previousYear}-${String(previousMonth).padStart(2, "0")}-${String(previousMonthEnd.getUTCDate()).padStart(2, "0")}`;
+  return { start: previousMonthStart, end: previousMonthEndDate };
 }
